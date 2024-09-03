@@ -2,4 +2,3 @@ node_modules
 built
 .DS_Store
 out
-dist
