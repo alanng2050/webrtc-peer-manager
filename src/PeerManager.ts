@@ -1,4 +1,5 @@
-import { Peer, User } from './Peer'
+import { Peer } from './Peer'
+import { Signaler, User } from './types'
 
 export class PeerManager {
   peers: Peer[] = []
@@ -16,7 +17,7 @@ export class PeerManager {
 
   async onmessage({
     data: { candidate, desc, from, isNew },
-    sendMessage,
+    signaler,
     rtcConfig,
     onNewPeer,
   }: {
@@ -26,7 +27,7 @@ export class PeerManager {
       from: User
       isNew: boolean
     }
-    sendMessage: (data: unknown) => void
+    signaler: Signaler
     rtcConfig?: RTCConfiguration
     onNewPeer?: () => void
   }) {
@@ -34,9 +35,7 @@ export class PeerManager {
     // send offer to new member
     if (isNew) {
       const newPeer = new Peer({
-        signaler: {
-          send: sendMessage,
-        },
+        signaler,
         rtcConfig,
         user: this._user,
         receiver: from,
@@ -49,9 +48,7 @@ export class PeerManager {
     // receive offer from others
     if (desc?.type === 'offer') {
       const newPeer = new Peer({
-        signaler: {
-          send: sendMessage,
-        },
+        signaler,
         rtcConfig,
         user: this._user,
         receiver: from,

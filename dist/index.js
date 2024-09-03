@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./Peer"), exports);
 __exportStar(require("./PeerManager"), exports);
 __exportStar(require("./utils"), exports);
+__exportStar(require("./types"), exports);

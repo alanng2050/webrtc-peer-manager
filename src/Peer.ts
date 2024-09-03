@@ -1,19 +1,4 @@
-export type User = {
-  priority: number
-  id: string
-  name?: string
-}
-
-export type SignalData = {
-  to: string
-  from: User
-  desc?: RTCSessionDescriptionInit | null
-  candidate?: RTCIceCandidateInit | null
-}
-
-type Signaler = { send: (data: SignalData) => void }
-
-// const MAIN_CHANNEL_NAME = 'main'
+import { User, Signaler } from './types'
 
 export class Peer {
   private _connection: RTCPeerConnection
@@ -97,13 +82,6 @@ export class Peer {
     return false
   }
 
-  // _ondatachannel = ({ channel }: RTCDataChannelEvent) => {
-  //   if (channel.label === MAIN_CHANNEL_NAME) {
-  //     this._channel = channel
-  //     this.channel.next(channel)
-  //   }
-  // }
-
   //
   async _acceptNewOffer(desc: RTCSessionDescriptionInit) {
     const ignoreOffer = this._checkIgnoreOffer()
@@ -140,9 +118,6 @@ export class Peer {
    * send offer to a new peer
    */
   _sendOffer() {
-    // this._channel = this._connection.createDataChannel(MAIN_CHANNEL_NAME)
-    // this._channel.binaryType = 'arraybuffer'
-    // this.channel.next(this._channel)
     this._connection.addEventListener(
       'negotiationneeded',
       this._onnegotiationneeded
@@ -163,8 +138,6 @@ export class Peer {
       this._onnegotiationneeded
     )
     this._connection.removeEventListener('icecandidate', this._onicecandidate)
-    // this._connection.removeEventListener('datachannel', this._ondatachannel)
-    // this._channel.close()
     this._connection.close()
   }
 

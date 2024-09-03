@@ -1,17 +1,4 @@
-export type User = {
-    priority: number;
-    id: string;
-    name?: string;
-};
-export type SignalData = {
-    to: string;
-    from: User;
-    desc?: RTCSessionDescriptionInit | null;
-    candidate?: RTCIceCandidateInit | null;
-};
-type Signaler = {
-    send: (data: SignalData) => void;
-};
+import { User, Signaler } from './types';
 export declare class Peer {
     private _connection;
     receiver: User;
@@ -39,4 +26,3 @@ export declare class Peer {
     remove(): Promise<void>;
     handleAnswer(desc: RTCSessionDescriptionInit): Promise<void>;
 }
-export {};

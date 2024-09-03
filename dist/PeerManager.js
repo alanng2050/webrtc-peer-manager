@@ -20,13 +20,11 @@ class PeerManager {
         const index = this.peers.findIndex((item) => { var _a; return ((_a = item.receiver) === null || _a === void 0 ? void 0 : _a.id) === receiverId; });
         this.peers.splice(index, 1);
     }
-    onmessage({ data: { candidate, desc, from, isNew }, sendMessage, rtcConfig, onNewPeer, }) {
+    onmessage({ data: { candidate, desc, from, isNew }, signaler, rtcConfig, onNewPeer, }) {
         return __awaiter(this, void 0, void 0, function* () {
             if (isNew) {
                 const newPeer = new Peer_1.Peer({
-                    signaler: {
-                        send: sendMessage,
-                    },
+                    signaler,
                     rtcConfig,
                     user: this._user,
                     receiver: from,
@@ -37,9 +35,7 @@ class PeerManager {
             }
             if ((desc === null || desc === void 0 ? void 0 : desc.type) === 'offer') {
                 const newPeer = new Peer_1.Peer({
-                    signaler: {
-                        send: sendMessage,
-                    },
+                    signaler,
                     rtcConfig,
                     user: this._user,
                     receiver: from,
