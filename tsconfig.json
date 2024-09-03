@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "ES6",
+    "lib": ["ES6", "DOM"],
+    "allowJs": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "removeComments": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": [
+    "./built",
+    "node_modules",
+    "./src/**/*.test.ts",
+    "./src/**/*.test.tsx"
+  ]
+}
