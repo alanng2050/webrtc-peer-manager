@@ -1,0 +1,10 @@
+.DS_Store
+.vscode
+src
+.eslint*
+build.js
+dev.js
+jest.config.js
+tsconfig.json
+yarn.lock
+.prettierrc

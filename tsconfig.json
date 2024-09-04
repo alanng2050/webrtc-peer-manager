@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "ES6",
     "lib": ["ES6", "DOM"],
     "allowJs": true,
     "strict": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "removeComments": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "declaration": true,
     "baseUrl": ".",
     "paths": {
@@ -18,10 +18,5 @@
     }
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": [
-    "./built",
-    "node_modules",
-    "./src/**/*.test.ts",
-    "./src/**/*.test.tsx"
-  ]
+  "exclude": ["node_modules", "./src/**/*.test.ts", "./src/**/*.test.tsx"]
 }
